@@ -20,11 +20,13 @@ export default function Product(props) {
         <div className="row">
           <div className="price">${product.price}</div>
           <div>
-            <Link to={`/seller/${product.seller._id}`}>
-              {product.seller && product.seller.seller
-                ? product.seller.seller.name
-                : 'unknown seller'}
-            </Link>
+            {product.seller && product.seller.seller ? (
+              <Link to={`/seller/${product.seller._id}`}>
+                {product.seller.seller.name}
+              </Link>
+            ) : (
+              'unknown seller'
+            )}
           </div>
         </div>
       </div>

@@ -15,7 +15,11 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/papercha');
+mongoose
+  .connect(process.env.MONGODB_URL || 'mongodb://localhost/papercha')
+  .then(() => console.log('connected to db'))
+  .catch((err) => console.log(err));
+
 app.use('/api/uploads', uploadRouter);
 app.use('/api/users', userRouter);
 app.use('/api/products', productRouter);
